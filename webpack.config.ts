@@ -37,7 +37,7 @@ module.exports = {
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
-		filename: `${process.env.APP_NAME}.bundle.js`
+		filename: "app.bundle.js"
 	},
 	externals: [nodeExternals()],
 	optimization: {
