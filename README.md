@@ -1,4 +1,12 @@
 # opinionated typescript rest api template
+This repository is an opionated take on how an express backend should be structured. The backend includes techonologies such as:
++ Typescript
++ expressJS
++ MongoDB
++ eslint
++ Prettier 
+ 
+The repository also has a well defined structure built to allow for easy maintainability. The thought process here is that the repo should easily be able to be integrated as a foundation for a project without the initial configuration and all the setup. Included in the repo there are also vscode extension recommendations and settings, all set to help productivity and enforce code style to get a consitent and well written project.
 
 ## Setup
 
