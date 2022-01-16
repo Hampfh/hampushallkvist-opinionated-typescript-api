@@ -14,7 +14,7 @@ module.exports = {
 				loader: "ts-loader",
 				exclude: /node_modules/,
 				options: {
-					transpileOnly: true,
+					transpileOnly: true
 				}
 			}
 		]
@@ -26,13 +26,13 @@ module.exports = {
 		extensions: [".ts"],
 		preferAbsolute: true,
 		alias: {
-			"@types": path.join(__dirname, "src/@types/"),
-			"controllers": path.join(__dirname, "src/controllers/"),
-			"logic": path.join(__dirname, "src/logic/"),
-			"middlewares": path.join(__dirname, "src/middlewares/"),
-			"models": path.join(__dirname, "src/models/"),
-			"routes": path.join(__dirname, "src/routes/"),
-			"validators": path.join(__dirname, "src/validators/"),
+			controllers: path.join(__dirname, "src/controllers/"),
+			logic: path.join(__dirname, "src/logic/"),
+			middlewares: path.join(__dirname, "src/middlewares/"),
+			models: path.join(__dirname, "src/models/"),
+			routes: path.join(__dirname, "src/routes/"),
+			validators: path.join(__dirname, "src/validators/"),
+			utilities: path.join(__dirname, "src/utilities/")
 		}
 	},
 	output: {

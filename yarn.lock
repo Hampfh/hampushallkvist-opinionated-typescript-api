@@ -1068,6 +1068,11 @@ fastq@^1.6.0:
   dependencies:
     reusify "^1.0.4"
 
+field-modifier@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/field-modifier/-/field-modifier-1.1.3.tgz#c6a42377e8981d9a34e85ba591d01f4e1cf2aadf"
+  integrity sha512-KCDRHedulIioSNzXZNSDdrh1bvfzFYjxZ+6sP8kjJ9fXmILbStGe0u638OKo7lafQt3Z3jZqOmd0JRIgI4m5Zw==
+
 file-entry-cache@^6.0.1:
   version "6.0.1"
   resolved "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-6.0.1.tgz"
