@@ -3,18 +3,23 @@ import StatusCodes from "http-status-codes"
 import Joi from "joi"
 
 export function validateSchema(
-	schema: Joi.ObjectSchema<unknown>,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	schema: Joi.ObjectSchema<any>,
 	req: Request,
 	res: Response,
 	next: NextFunction,
-	checkObject: object // Would traditionally be either req.body or req.query
+	type: "query" | "body"
 ) {
-	const { error, value } = schema.validate(checkObject)
+	const { error, value } = schema.validate(
+		type === "body" ? req.body : req.query
+	)
 	if (error) {
 		return res.status(StatusCodes.BAD_REQUEST).json({
 			message: error.message
 		})
 	}
-	req.body = value
+	// Update params of req object
+	if (type === "body") req.body = value
+	else req.query = value
 	return next()
 }

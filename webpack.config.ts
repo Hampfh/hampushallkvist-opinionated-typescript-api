@@ -26,12 +26,11 @@ module.exports = {
 		extensions: [".ts"],
 		preferAbsolute: true,
 		alias: {
-			controllers: path.join(__dirname, "src/controllers/"),
-			logic: path.join(__dirname, "src/logic/"),
+			"@types": path.join(__dirname, "src/@types/"),
+			core: path.join(__dirname, "src/core/"),
 			middlewares: path.join(__dirname, "src/middlewares/"),
 			models: path.join(__dirname, "src/models/"),
 			routes: path.join(__dirname, "src/routes/"),
-			validators: path.join(__dirname, "src/validators/"),
 			utilities: path.join(__dirname, "src/utilities/")
 		}
 	},

@@ -1,6 +1,5 @@
-import { UserController } from "controllers/User.controller"
+import { controlGetUser, validateGetUser } from "core/user/get.controller"
 import { Router } from "express"
-import { validateGetUser } from "validators/user.validators"
 
 /**
  * All routes that should be included
@@ -11,4 +10,4 @@ export const apiRouter = Router({
 	strict: true
 })
 
-apiRouter.get("/user", validateGetUser, UserController.read)
+apiRouter.get("/user", validateGetUser, controlGetUser)
