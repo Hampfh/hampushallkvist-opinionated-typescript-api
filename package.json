@@ -1,6 +1,6 @@
 {
   "name": "hampushallkvist-opinionated-typescript-rest-api",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An opinionated repository structure for REST apis",
   "repository": "https://github.com/hampfh/hampushallkvist-opinionated-typescript-rest-api",
   "author": "Hampus Hallkvist",
