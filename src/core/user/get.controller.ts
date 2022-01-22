@@ -20,7 +20,7 @@ export async function controlGetUser(req: ModifiedRequest, res: Response) {
 			},
 			include: [
 				{
-					association: UserAuthModel.associations.User
+					association: UserAuthModel.associations.user
 				}
 			]
 		})

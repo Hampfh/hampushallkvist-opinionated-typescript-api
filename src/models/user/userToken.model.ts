@@ -25,12 +25,12 @@ export class UserTokenModel
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
 
-	declare readonly User?: UserModel
-	declare readonly Token?: TokenModel
+	declare readonly user?: UserModel
+	declare readonly token?: TokenModel
 
 	declare static associations: {
-		User: Association<UserTokenModel, UserModel>
-		Token: Association<UserTokenModel, TokenModel>
+		user: Association<UserTokenModel, UserModel>
+		token: Association<UserTokenModel, TokenModel>
 	}
 }
 
@@ -63,7 +63,7 @@ export function buildUserTokenModel(sequelize: Sequelize) {
 		{
 			sequelize,
 			tableName: "UserTokens",
-			modelName: "UserTokens",
+			modelName: "userTokens",
 			schema: "users"
 		}
 	)

@@ -21,7 +21,7 @@ export async function createUser(
 	const request = await UserModel.create(
 		{
 			email,
-			UserAuths: [
+			userAuths: [
 				{
 					service,
 					serviceUsername: username ?? null,
@@ -32,7 +32,7 @@ export async function createUser(
 		{
 			include: [
 				{
-					association: UserModel.associations.UserAuths
+					association: UserModel.associations.userAuths
 				}
 			]
 		}
@@ -41,6 +41,6 @@ export async function createUser(
 	return {
 		id: request.id,
 		email: request.email,
-		usernames: request.UserAuths
+		usernames: request.userAuths
 	}
 }

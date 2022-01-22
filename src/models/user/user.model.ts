@@ -14,8 +14,8 @@ export interface IUserAttributes {
 }
 export interface IUserCreationAttributes
 	extends Optional<IUserAttributes, "id"> {
-	UserAuths?: IUserAuthCreationAttributes[]
-	UserTokens?: IUserTokenCreationAttributes[]
+	userAuths?: IUserAuthCreationAttributes[]
+	userTokens?: IUserTokenCreationAttributes[]
 }
 
 export class UserModel
@@ -29,12 +29,12 @@ export class UserModel
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
 
-	declare readonly UserAuths?: UserAuthModel[]
-	declare readonly UserTokens?: UserTokenModel[]
+	declare readonly userAuths?: UserAuthModel[]
+	declare readonly userTokens?: UserTokenModel[]
 
 	declare static associations: {
-		UserAuths: Association<UserModel, UserAuthModel>
-		UserTokens: Association<UserModel, UserTokenModel>
+		userAuths: Association<UserModel, UserAuthModel>
+		userTokens: Association<UserModel, UserTokenModel>
 	}
 }
 
@@ -55,7 +55,7 @@ export function buildUserModel(sequelize: Sequelize) {
 		{
 			sequelize,
 			tableName: "Users",
-			modelName: "Users",
+			modelName: "users",
 			schema: "users"
 		}
 	)
