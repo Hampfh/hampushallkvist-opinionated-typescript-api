@@ -48,11 +48,11 @@ ALTER TABLE IF EXISTS "users"."Users"
 COMMENT ON TABLE "users"."Users"
     IS 'Table for storing core user data';
 
--- Table: users.UserAuths
+-- Table: users.Services
 
--- DROP TABLE IF EXISTS users."UserAuths";
+-- DROP TABLE IF EXISTS users."Services";
 
-CREATE TABLE IF NOT EXISTS users."UserAuths"
+CREATE TABLE IF NOT EXISTS users."Services"
 (
     id SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS users."UserAuths"
     auth character varying(500) COLLATE pg_catalog."default" NOT NULL,
     "createdAt" timestamp without time zone NOT NULL DEFAULT now(),
     "updatedAt" timestamp without time zone NOT NULL DEFAULT now(),
-    CONSTRAINT "UserAuths_pkey" PRIMARY KEY (id),
+    CONSTRAINT "Services_pkey" PRIMARY KEY (id),
     CONSTRAINT "userId" FOREIGN KEY ("userId")
         REFERENCES users."Users" (id) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -70,13 +70,13 @@ CREATE TABLE IF NOT EXISTS users."UserAuths"
 
 TABLESPACE pg_default;
 
-ALTER TABLE IF EXISTS users."UserAuths"
+ALTER TABLE IF EXISTS users."Services"
     OWNER to pg_database_owner;
 
-COMMENT ON TABLE users."UserAuths"
+COMMENT ON TABLE users."Services"
     IS 'Users authentication table for connecting Users table with third party login services';
 
-COMMENT ON CONSTRAINT "userId" ON users."UserAuths"
+COMMENT ON CONSTRAINT "userId" ON users."Services"
     IS 'Id of user table';
 
 -- Table: users.UserTokens

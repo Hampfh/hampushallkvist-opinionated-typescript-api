@@ -9,12 +9,6 @@ interface IPrivateUser extends IUser {
 
 type IPublicUser = IUser
 
-interface IService extends IDbModel {
-	service: string
-	serviceUsername?: string
-	auth: string
-}
-
 interface IUserToken extends IDbModel {
 	userId: number
 	tokenId: number

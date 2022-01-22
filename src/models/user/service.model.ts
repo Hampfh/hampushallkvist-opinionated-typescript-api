@@ -1,21 +1,21 @@
 import { IUserCreationAttributes, UserModel } from "models/user/user.model"
 import { Association, DataTypes, Model, Optional, Sequelize } from "sequelize"
 
-export interface IUserAuthAttributes {
+export interface IServiceAttributes {
 	id: number
 	userId: number
 	service: string
 	serviceUsername: string | null
 	auth: string
 }
-export interface IUserAuthCreationAttributes
-	extends Optional<IUserAuthAttributes, "id" | "userId"> {
+export interface IServiceCreationAttributes
+	extends Optional<IServiceAttributes, "id" | "userId"> {
 	User?: IUserCreationAttributes
 }
 
-export class UserAuthModel
-	extends Model<IUserAuthAttributes, IUserAuthCreationAttributes>
-	implements IUserAuthAttributes
+export class ServiceModel
+	extends Model<IServiceAttributes, IServiceCreationAttributes>
+	implements IServiceAttributes
 {
 	declare id: number
 	declare userId: number
@@ -30,12 +30,12 @@ export class UserAuthModel
 	declare readonly user?: UserModel
 
 	declare static associations: {
-		user: Association<UserAuthModel, UserModel>
+		user: Association<ServiceModel, UserModel>
 	}
 }
 
-export function buildUserAuthModel(sequelize: Sequelize) {
-	UserAuthModel.init(
+export function buildServiceModel(sequelize: Sequelize) {
+	ServiceModel.init(
 		{
 			id: {
 				primaryKey: true,
@@ -66,8 +66,8 @@ export function buildUserAuthModel(sequelize: Sequelize) {
 		},
 		{
 			sequelize,
-			tableName: "UserAuths",
-			modelName: "userAuths",
+			tableName: "Services",
+			modelName: "services",
 			schema: "users"
 		}
 	)

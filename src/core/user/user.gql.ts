@@ -1,14 +1,6 @@
 import { gql } from "apollo-server-core"
 
 export const UserDefs = gql`
-	type Service {
-		id: ID!
-		serivce: String!
-		username: String!
-		updatedAt: String
-		createdAt: String
-	}
-
 	type UserPrivate {
 		id: ID!
 		email: String!

@@ -2,7 +2,7 @@ import { Response } from "express"
 import { deleteFields } from "field-modifier"
 import { StatusCodes } from "http-status-codes"
 import Joi from "joi"
-import { UserAuthModel } from "models/user/userAuth.model"
+import { ServiceModel } from "models/user/service.model"
 import { trycatch } from "utilities/validate_async"
 
 export type ModifiedRequest = IRequestQuery<{ username: string }>
@@ -14,13 +14,13 @@ export function getUserSchema() {
 
 export async function controlGetUser(req: ModifiedRequest, res: Response) {
 	const result = await trycatch(() =>
-		UserAuthModel.findOne({
+		ServiceModel.findOne({
 			where: {
 				serviceUsername: req.query.username
 			},
 			include: [
 				{
-					association: UserAuthModel.associations.user
+					association: ServiceModel.associations.user
 				}
 			]
 		})

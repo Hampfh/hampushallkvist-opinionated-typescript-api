@@ -1,7 +1,7 @@
 import {
-	IUserAuthCreationAttributes,
-	UserAuthModel
-} from "models/user/userAuth.model"
+	IServiceCreationAttributes,
+	ServiceModel
+} from "models/user/service.model"
 import {
 	IUserTokenCreationAttributes,
 	UserTokenModel
@@ -14,7 +14,7 @@ export interface IUserAttributes {
 }
 export interface IUserCreationAttributes
 	extends Optional<IUserAttributes, "id"> {
-	userAuths?: IUserAuthCreationAttributes[]
+	services?: IServiceCreationAttributes[]
 	userTokens?: IUserTokenCreationAttributes[]
 }
 
@@ -29,11 +29,11 @@ export class UserModel
 	declare readonly createdAt: Date
 	declare readonly updatedAt: Date
 
-	declare readonly userAuths?: UserAuthModel[]
+	declare readonly services?: ServiceModel[]
 	declare readonly userTokens?: UserTokenModel[]
 
 	declare static associations: {
-		userAuths: Association<UserModel, UserAuthModel>
+		services: Association<UserModel, ServiceModel>
 		userTokens: Association<UserModel, UserTokenModel>
 	}
 }

@@ -1,7 +1,12 @@
-import { queryPublicUser } from "core/user/query.resolver"
+import { queryServices } from "core/service/query.resolver"
+import { queryUser } from "core/user/query.resolver"
 
 export const resolvers = {
 	Query: {
-		user: queryPublicUser
+		me: queryUser,
+		user: queryUser
+	},
+	UserPrivate: {
+		services: queryServices
 	}
 }

@@ -1,10 +1,10 @@
 import { TokenModel } from "models/token/token.model"
+import { ServiceModel } from "models/user/service.model"
 import { UserModel } from "models/user/user.model"
-import { UserAuthModel } from "models/user/userAuth.model"
 import { UserTokenModel } from "models/user/userToken.model"
 
 export function setupAssociations() {
-	UserModel.hasMany(UserAuthModel, {
+	UserModel.hasMany(ServiceModel, {
 		foreignKey: "userId",
 		sourceKey: "id"
 	})
@@ -13,7 +13,7 @@ export function setupAssociations() {
 		sourceKey: "id"
 	})
 
-	UserAuthModel.belongsTo(UserModel, {
+	ServiceModel.belongsTo(UserModel, {
 		foreignKey: "userId",
 		targetKey: "id"
 	})
