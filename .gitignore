@@ -2,9 +2,13 @@
 node_modules
 dist
 coverage
+.VSCodeCounter
 
 # Environmental files
 **.env
 **.env.production
 **.env.development
 **.env.testing
+
+# Other
+yarn-error.log

@@ -5,7 +5,7 @@ export const publicRouter = Router({
 	strict: true
 })
 
-publicRouter.get("*", ({ res }) => {
+publicRouter.get("/", ({ res }) => {
 	res?.status(200).json({
 		message: `Welcome to the ${process.env.APP_NAME} api`
 	})
