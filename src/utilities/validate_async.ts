@@ -23,7 +23,7 @@ export type ValidateAsync<T> =
  * catch as this also allows the use of
  * return values
  */
-export async function validateAsync<T>(
+export async function trycatch<T>(
 	asyncFunction: () => Promise<T>
 ): Promise<ValidateAsync<T>> {
 	try {

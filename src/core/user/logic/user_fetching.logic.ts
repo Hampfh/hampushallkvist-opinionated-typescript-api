@@ -1,10 +1,15 @@
-import { IUser, UserModel } from "models/user.model"
-import { FilterQuery } from "mongoose"
+import { IUserAttributes, UserModel } from "models/user/user.model"
+import { WhereOptions } from "sequelize"
 
-export async function getUser(filterQuery: FilterQuery<IUser>) {
-	return await UserModel.findOne(filterQuery)
+export async function getUser(filterQuery: WhereOptions<IUserAttributes>) {
+	return await UserModel.findOne({
+		where: filterQuery
+	})
 }
 
-export async function getLeanUser(filterQuery: FilterQuery<IUser>) {
-	return await UserModel.findOne(filterQuery).lean()
+export async function getUserRaw(filterQuery: WhereOptions<IUserAttributes>) {
+	return await UserModel.findOne({
+		where: filterQuery,
+		raw: true
+	})
 }

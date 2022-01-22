@@ -1,11 +1,7 @@
-import dotenv from "dotenv"
 import express, { NextFunction, Request, Response } from "express"
 import morgan from "morgan"
 import path from "path"
 import { setupRoutes } from "routes/routes"
-
-// Setup dotenv
-dotenv.config()
 
 const app = express()
 

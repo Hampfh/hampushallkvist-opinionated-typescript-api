@@ -1,29 +1,29 @@
-import { getLeanUser } from "core/user/logic/user_fetching.logic"
-import { NextFunction, Response } from "express"
+import { Response } from "express"
 import { deleteFields } from "field-modifier"
 import { StatusCodes } from "http-status-codes"
 import Joi from "joi"
-import { validateSchema } from "middlewares/schema_validator"
-import { validateAsync } from "utilities/validate_async"
+import { UserAuthModel } from "models/user/userAuth.model"
+import { trycatch } from "utilities/validate_async"
 
 export type ModifiedRequest = IRequestQuery<{ username: string }>
-export function validateGetUser(
-	req: ModifiedRequest,
-	res: Response,
-	next: NextFunction
-) {
-	const schema = Joi.object({
+export function getUserSchema() {
+	return Joi.object({
 		username: Joi.string().required()
 	})
-	validateSchema(schema, req, res, next, "query")
 }
 
 export async function controlGetUser(req: ModifiedRequest, res: Response) {
-	const result = await validateAsync(
-		async () =>
-			await getLeanUser({
-				username: req.query.username
-			})
+	const result = await trycatch(() =>
+		UserAuthModel.findOne({
+			where: {
+				serviceUsername: req.query.username
+			},
+			include: [
+				{
+					association: UserAuthModel.associations.User
+				}
+			]
+		})
 	)
 
 	if (result.error)
@@ -38,6 +38,6 @@ export async function controlGetUser(req: ModifiedRequest, res: Response) {
 
 	return res.status(200).json({
 		message: "Successfully fetched user",
-		user: deleteFields(["hashedPassword"], result.data)
+		user: deleteFields(["auth"], result.data)
 	})
 }

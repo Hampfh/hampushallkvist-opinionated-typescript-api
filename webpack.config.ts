@@ -26,6 +26,7 @@ module.exports = {
 		extensions: [".ts"],
 		preferAbsolute: true,
 		alias: {
+			__tests__: path.join(__dirname, "src/__tests__"),
 			"@types": path.join(__dirname, "src/@types/"),
 			core: path.join(__dirname, "src/core/"),
 			middlewares: path.join(__dirname, "src/middlewares/"),

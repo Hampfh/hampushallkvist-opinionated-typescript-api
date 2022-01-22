@@ -1,27 +1,31 @@
-import { NextFunction, Response } from "express"
+import { Response } from "express"
 import { deleteFields } from "field-modifier"
 import { StatusCodes } from "http-status-codes"
 import Joi from "joi"
-import { validateSchema } from "middlewares/schema_validator"
-import { validateAsync } from "utilities/validate_async"
+import { trycatch } from "utilities/validate_async"
 import { createUser } from "./logic/create_user.logic"
 
-type ModifiedRequest = IRequestBody<{ username: string; password: string }>
-export function validatePostUser(
-	req: ModifiedRequest,
-	res: Response,
-	next: NextFunction
-) {
-	const schema = Joi.object({
+type ModifiedRequest = IRequestBody<{
+	username: string
+	email: string
+	password: string
+}>
+export function postUserSchema() {
+	return Joi.object({
 		username: Joi.string().required(),
+		email: Joi.string().required(),
 		password: Joi.string().min(3).max(100).required()
 	})
-	validateSchema(schema, req, res, next, "query")
 }
 
 export async function controlCreateUser(req: ModifiedRequest, res: Response) {
-	const result = await validateAsync(
-		async () => await createUser(req.body.username, req.body.password)
+	const result = await trycatch(() =>
+		createUser(
+			req.body.username,
+			req.body.email,
+			req.body.password,
+			"internal"
+		)
 	)
 
 	if (result.error)
@@ -34,8 +38,8 @@ export async function controlCreateUser(req: ModifiedRequest, res: Response) {
 		})
 	}
 
-	return res.status(200).json({
-		message: "Successfully fetched user",
+	return res.status(201).json({
+		message: "Successfully created user",
 		user: deleteFields(["hashedPassword"], result.data)
 	})
 }

@@ -1,5 +1,7 @@
-import { controlGetUser, validateGetUser } from "core/user/get.controller"
+import { controlCreateUser, postUserSchema } from "core/user/create.controller"
+import { controlGetUser, getUserSchema } from "core/user/get.controller"
 import { Router } from "express"
+import { validateSchema as check } from "middlewares/schema_validator"
 
 /**
  * All routes that should be included
@@ -10,4 +12,5 @@ export const apiRouter = Router({
 	strict: true
 })
 
-apiRouter.get("/user", validateGetUser, controlGetUser)
+apiRouter.get("/user", check(getUserSchema, "query"), controlGetUser)
+apiRouter.post("/user", check(postUserSchema, "body"), controlCreateUser)

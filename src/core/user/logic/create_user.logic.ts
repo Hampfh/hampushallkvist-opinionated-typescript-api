@@ -1,8 +1,8 @@
 import Crypto from "crypto"
-import { UserModel } from "models/user.model"
+import { UserModel } from "models/user/user.model"
 
 async function hashPassword(password: string) {
-	return new Promise((resolve, reject) => {
+	return new Promise<string>((resolve, reject) => {
 		const salt = Crypto.randomBytes(16).toString("hex")
 
 		Crypto.scrypt(password, salt, 64, (err, derivedKey) => {
@@ -12,9 +12,35 @@ async function hashPassword(password: string) {
 	})
 }
 
-export async function createUser(username: string, password: string) {
-	return new UserModel({
-		username,
-		hashedPassword: await hashPassword(password)
-	})
+export async function createUser(
+	username: string | undefined,
+	email: string,
+	password: string,
+	service: string
+) {
+	const request = await UserModel.create(
+		{
+			email,
+			UserAuths: [
+				{
+					service,
+					serviceUsername: username ?? null,
+					auth: await hashPassword(password)
+				}
+			]
+		},
+		{
+			include: [
+				{
+					association: UserModel.associations.UserAuths
+				}
+			]
+		}
+	)
+
+	return {
+		id: request.id,
+		email: request.email,
+		usernames: request.UserAuths
+	}
 }

@@ -15,4 +15,5 @@
 		}
 	},
 	"editor.insertSpaces": false,
+	"typescript.preferences.importModuleSpecifier": "non-relative"
 }

@@ -27,3 +27,7 @@ yarn start
 ```
 
 Also make sure to install all the recommended extensions included as "suggested extensions" in visual code.
+
+## Configuration
+Of course your project will not be named the same as this and databases, tables etc will therefore have to be changed to match your requirement. Here are a few steps to change the repository from a template to your own:
+1. Change all database names form "template" to your wanted name, search for "template" in the `.sql` files.
