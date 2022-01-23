@@ -1,5 +1,6 @@
 import Crypto from "crypto"
 import { UserModel } from "models/user/user.model"
+import { trycatch } from "utilities/validate_async"
 
 async function hashPassword(password: string) {
 	return new Promise<string>((resolve, reject) => {
@@ -13,19 +14,25 @@ async function hashPassword(password: string) {
 }
 
 export async function createUser(
-	username: string | undefined,
+	name: string | null,
+	surname: string | null,
 	email: string,
 	password: string,
-	service: string
+	service: string,
+	alreadyVerified = false
 ) {
 	const request = await UserModel.create(
 		{
 			email,
+			name,
+			surname,
+			primaryService: null,
 			services: [
 				{
 					service,
-					serviceUsername: username ?? null,
-					auth: await hashPassword(password)
+					serviceUsername: null,
+					auth: await hashPassword(password),
+					verified: alreadyVerified
 				}
 			]
 		},
@@ -38,9 +45,26 @@ export async function createUser(
 		}
 	)
 
+	// Connect the user to the created service
+	if (request.services != null) {
+		const primaryService = request.services[0].id
+		await trycatch(async () =>
+			UserModel.update(
+				{
+					primaryService
+				},
+				{
+					where: {
+						id: primaryService
+					}
+				}
+			)
+		)
+	}
+
 	return {
 		id: request.id,
 		email: request.email,
-		usernames: request.services
+		services: request.services
 	}
 }

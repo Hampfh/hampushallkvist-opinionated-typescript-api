@@ -4,12 +4,17 @@ export const UserDefs = gql`
 	type UserPrivate {
 		id: ID!
 		email: String!
+		name: String
+		surname: String
 		services: [Service]
+		createdAt: String!
+		updatedAt: String!
 	}
 
 	type UserPublic {
 		id: ID!
-		email: String!
+		createdAt: String!
+		updatedAt: String!
 	}
 
 	type Query {

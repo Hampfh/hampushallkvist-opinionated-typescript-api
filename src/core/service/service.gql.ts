@@ -4,8 +4,9 @@ export const ServiceDefs = gql`
 	type Service {
 		id: ID!
 		service: String!
-		username: String!
-		updatedAt: String
-		createdAt: String
+		username: String
+		verified: Boolean!
+		updatedAt: String!
+		createdAt: String!
 	}
 `

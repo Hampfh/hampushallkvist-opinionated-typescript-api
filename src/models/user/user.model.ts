@@ -11,6 +11,9 @@ import { Association, DataTypes, Model, Optional, Sequelize } from "sequelize"
 export interface IUserAttributes {
 	id: number
 	email: string
+	name: string | null
+	surname: string | null
+	primaryService: number | null
 }
 export interface IUserCreationAttributes
 	extends Optional<IUserAttributes, "id"> {
@@ -24,6 +27,9 @@ export class UserModel
 {
 	declare id: number
 	declare email: string
+	declare name: string | null
+	declare surname: string | null
+	declare primaryService: number | null
 
 	// Timestamps
 	declare readonly createdAt: Date
@@ -50,6 +56,22 @@ export function buildUserModel(sequelize: Sequelize) {
 			email: {
 				allowNull: false,
 				type: DataTypes.STRING
+			},
+			name: {
+				allowNull: false,
+				type: DataTypes.STRING
+			},
+			surname: {
+				allowNull: false,
+				type: DataTypes.STRING
+			},
+			primaryService: {
+				allowNull: true,
+				references: {
+					model: "services",
+					key: "id"
+				},
+				type: DataTypes.INTEGER
 			}
 		},
 		{

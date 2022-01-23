@@ -35,6 +35,8 @@ CREATE TABLE IF NOT EXISTS "users"."Users"
 (
     id SERIAL NOT NULL,
     email character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    "name" character varying(50) COLLATE pg_catalog."default",
+    surname character varying(50) COLLATE pg_catalog."default",
     "createdAt" timestamp without time zone NOT NULL DEFAULT now(),
     "updatedAt" timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT "Users_pkey" PRIMARY KEY (id)
@@ -59,6 +61,7 @@ CREATE TABLE IF NOT EXISTS users."Services"
     service character varying(200) COLLATE pg_catalog."default" NOT NULL,
     "serviceUsername" character varying(100) COLLATE pg_catalog."default",
     auth character varying(500) COLLATE pg_catalog."default" NOT NULL,
+    verified BOOLEAN NOT NULL,
     "createdAt" timestamp without time zone NOT NULL DEFAULT now(),
     "updatedAt" timestamp without time zone NOT NULL DEFAULT now(),
     CONSTRAINT "Services_pkey" PRIMARY KEY (id),

@@ -7,6 +7,7 @@ export interface IServiceAttributes {
 	service: string
 	serviceUsername: string | null
 	auth: string
+	verified: boolean
 }
 export interface IServiceCreationAttributes
 	extends Optional<IServiceAttributes, "id" | "userId"> {
@@ -22,6 +23,7 @@ export class ServiceModel
 	declare service: string
 	declare serviceUsername: string | null
 	declare auth: string
+	declare verified: boolean
 
 	// Timestamps
 	declare readonly createdAt: Date
@@ -62,6 +64,10 @@ export function buildServiceModel(sequelize: Sequelize) {
 			auth: {
 				allowNull: false,
 				type: DataTypes.STRING
+			},
+			verified: {
+				allowNull: false,
+				type: DataTypes.BOOLEAN
 			}
 		},
 		{

@@ -12,10 +12,18 @@ export function setupAssociations() {
 		foreignKey: "userId",
 		sourceKey: "id"
 	})
+	UserModel.belongsTo(ServiceModel, {
+		foreignKey: "primaryService",
+		targetKey: "id"
+	})
 
 	ServiceModel.belongsTo(UserModel, {
 		foreignKey: "userId",
 		targetKey: "id"
+	})
+	ServiceModel.hasOne(UserModel, {
+		foreignKey: "primaryService",
+		sourceKey: "id"
 	})
 
 	UserTokenModel.belongsTo(UserModel, {
