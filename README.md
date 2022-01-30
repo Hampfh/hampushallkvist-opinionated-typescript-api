@@ -1,12 +1,19 @@
 # opinionated typescript rest api template
-This repository is an opionated take on how an express backend should be structured. The backend includes techonologies such as:
+This repository is an opionated take on how an express backend should be structured. The backend has support for both rest and graphql and enables you to pick on over the other or keep both. The stack contains technologies such as:
 + Typescript
 + expressJS
-+ MongoDB
++ PostgSQL
 + eslint
 + Prettier 
++ GraphQL -> Apollo Server
  
 The repository also has a well defined structure built to allow for easy maintainability. The thought process here is that the repo should easily be able to be integrated as a foundation for a project without the initial configuration and all the setup. Included in the repo there are also vscode extension recommendations and settings, all set to help productivity and enforce code style to get a consitent and well written project.
+
+## Features
+The backend comes with a very basic user and token model that can be expanded. 
++ It includes routes for creating and fetching users. 
++ Predefined folder structure to start coding directly
++ Settings to make the code consistent
 
 ## Setup
 
